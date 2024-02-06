@@ -1,0 +1,1 @@
+D:\WorkPlace\BlockChain\rust\ownership-references\target\debug\ownership_references.exe: D:\WorkPlace\BlockChain\rust\ownership-references\src\lib.rs D:\WorkPlace\BlockChain\rust\ownership-references\src\main.rs
