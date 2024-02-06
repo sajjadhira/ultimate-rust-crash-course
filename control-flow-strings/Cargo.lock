@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "control-flow-strings"
+name = "control_flow_strings"
 version = "0.1.0"

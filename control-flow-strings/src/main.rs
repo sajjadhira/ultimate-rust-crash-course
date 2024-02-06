@@ -1,7 +1,13 @@
 // Silence some warnings so they don't distract from the exercise.
 #![allow(dead_code, unused_mut, unused_variables)]
 
+use control_flow_strings::greet;
+
 fn main() {
+    let name = "Sajjad";
+
+    greet(name);
+    greet(name);
     // This collects any command-line arguments into a vector of Strings.
     // For example:
     //
