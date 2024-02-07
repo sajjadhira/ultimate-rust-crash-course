@@ -39,7 +39,7 @@ impl Invaders {
         Self {
             army,
             total_count,
-            move_timer: Timer::new(Duration::from_millis(250)),
+            move_timer: Timer::new(Duration::from_millis(2500)),
             direction: 1,
         }
     }
