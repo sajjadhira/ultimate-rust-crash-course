@@ -69,10 +69,15 @@ fn main() -> Result <(), Box<dyn Error>>{
     // Game loop
 
     let mut player = Player::new();
+    let mut instant = std::time::Instant::now();
+
+
 
     'gameloop: loop {
                     // Per-frame init
 
+                    let delta = instant.elapsed();
+                    instant = std::time::Instant::now();
                     let mut curr_frame = new_frame();
 
                     // Input
@@ -89,6 +94,12 @@ fn main() -> Result <(), Box<dyn Error>>{
                                     audio.play("move");
                                 }
 
+                                KeyCode::Char(' ') | KeyCode::Enter => {
+                                    if player.shoot() {
+                                        audio.play("pew");
+                                    }
+                                }
+
                                 KeyCode::Esc | KeyCode::Char('q') => {
                                     audio.play("lose");
                                     break 'gameloop;
@@ -98,6 +109,10 @@ fn main() -> Result <(), Box<dyn Error>>{
                             }
                         }
                     }
+
+                    // Updates
+
+                    player.update(delta);
 
                     // Draw & render
 
