@@ -4,6 +4,7 @@ use std::sync::mpsc;
 use invaders::frame;
 use invaders::frame::new_frame;
 use invaders::frame::Drawable;
+use invaders::invaders::Invaders;
 use invaders::player::Player;
 use invaders::render;
 use rusty_audio::Audio;
@@ -70,6 +71,7 @@ fn main() -> Result <(), Box<dyn Error>>{
 
     let mut player = Player::new();
     let mut instant = std::time::Instant::now();
+    let mut invaders = Invaders::new();
 
 
 
@@ -86,12 +88,10 @@ fn main() -> Result <(), Box<dyn Error>>{
                             match key_event.code {
                                 KeyCode::Left => {
                                     player.move_left();
-                                    audio.play("move");
                                 }
 
                                 KeyCode::Right => {
                                     player.move_right();
-                                    audio.play("move");
                                 }
 
                                 KeyCode::Char(' ') | KeyCode::Enter => {
@@ -113,10 +113,16 @@ fn main() -> Result <(), Box<dyn Error>>{
                     // Updates
 
                     player.update(delta);
+                    if invaders.update(delta) {
+                        audio.play("move");
+                    }
 
                     // Draw & render
 
-                    player.draw(&mut curr_frame);
+                    let drawables: Vec<&dyn Drawable> = vec![&player, &invaders];
+                    for d in drawables {
+                        d.draw(&mut curr_frame);
+                    }
                     let _ = render_tx.send(curr_frame);
                     thread::sleep(Duration::from_millis(1));
     }
