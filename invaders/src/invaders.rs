@@ -29,6 +29,7 @@ impl Invaders {
                     && (y < 9)
                     && (x % 2 == 0)
                     && (y % 2 == 0)
+                    // && x == 2
                 {
                     army.push(Invader { x, y, points: 1 });
                 }
@@ -38,7 +39,7 @@ impl Invaders {
         Self {
             army,
             total_count,
-            move_timer: Timer::new(Duration::from_millis(2000)),
+            move_timer: Timer::new(Duration::from_millis(250)),
             direction: 1,
         }
     }
