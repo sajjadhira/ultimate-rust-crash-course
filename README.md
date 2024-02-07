@@ -1,4 +1,4 @@
-# This repository is created for RUST Programming & Practices
+# RUST Programming & Practices
 
 **Lesson -1: Varriables**
 
